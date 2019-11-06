@@ -1,23 +1,26 @@
 %% Algoritmo de Euclides
 %
+% Algoritmo de Euclides Extendido: 
+% $gcd = s*f + t*g$ Identidad de Bezout
 %
 
 path(path, 'Algorithms');
 path(path, 'Classes');
 
 %%  $$ Z $$
-a = 24
-b = -27
+a = -27
+b = 24
 
 Z = Integers;
 
-gcd = euclid(a,b,Z) % -3
+gcd = euclid(a,b,Z); % -3
+fprintf("gcd(%i,%i) = %i\n",a,b,gcd);
 
-% gcd = a1*f + a2*g Identidad de Bezout
-[gcd,a1,a2] = euclid_extended(a,b,Z)
+[gcd,s,t] = euclid_extended(a,b,Z);
+fprintf("%i = %i*%i + %i*%i\n",gcd,s,a,t,b);
 
-gcd = euclid_u(a,b,Z) % 3
-
+gcd = euclid_u(a,b,Z); % 3
+fprintf("gcdu(%i,%i) = %i\n",a,b,gcd);
 
 %% $$ Z(i) $$
 
@@ -26,57 +29,55 @@ w = 11+7i
 
 Zi = GaussIntegers;
 
-gcd = euclid(z,w,Zi) % -i
+gcd = euclid(z,w,Zi); % -i
+fprintf("gcd(%i%+ii,%i%+ii) = %i%+ii\n",real(z),imag(z), real(w), ...
+    imag(w),real(gcd),imag(gcd));
 
-% gcd = a1*f + a2*g Identidad de Bezout
-%[gcd,a1,a2] = euclid_extended(z,w, zero, one, prod, minus, quo)
+[gcd,s,t] = euclid_extended(z,w, Zi);
+fprintf("%i%+ii = (%i%+ii)*(%i%+ii) + (%i%+ii)*(%i%+ii)\n",real(gcd), ...
+    imag(gcd), real(s),imag(s),real(z),imag(z),real(t),imag(t),real(w),imag(w));
 
-gcd = euclid_u(z,w,Zi) % 1
+gcd = euclid_u(z,w,Zi); % 1
+fprintf("gcdu(%i%+ii,%i%+ii) = %i%+ii\n",real(z),imag(z), real(w), ...
+    imag(w),real(gcd),imag(gcd));
 
 %% $$F_{q}[x] \quad q = 3^{1}$
 % 
 p = 3;
 n = 1;
 
-% field = gftuple([-1:p^n-2]',n,p);
-% 
-% zero = -Inf;
-% rem = @(f,g) gfrem(f,g,field);
-
 fqx = FiniteFieldPoly(p,n);
 
-f = [-1 -1 1]; 
-fprintf("f(x) = "); fqx.gfshow(fqx,f);
+f = [-Inf 0 1]; 
+fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
 g = [1 1]; 
-fprintf("g(x) = "); fqx.gfshow(fqx,g);
+fprintf("g(x) = %s\n", fqx.gfshow(fqx,g));
 
-h = euclid(f,g,fqx); % 1
-fprintf("h(x) = "); fqx.gfshow(fqx,h);
+h = euclid(f,g,fqx); 
+fprintf("gcd(f(x),g(x)) = %s\n", fqx.gfshow(fqx,h));
 
-% gcd = a1*f + a2*g Identidad de Bezout
-%[gcd,a1,a2] = euclid_extended(z,w, zero, one, prod, minus, quo)
+[gcd,s,t] = euclid_extended(f,g,fqx);
+fprintf("%s = (%s)*(%s) + (%s)*(%s)\n ", fqx.gfshow(fqx,gcd), ...
+    fqx.gfshow(fqx,s), fqx.gfshow(fqx,f), ...
+    fqx.gfshow(fqx,t), fqx.gfshow(fqx,g));
 
 %% $$F_{q}[x] \quad q = 3^{2}$
 % 
 p = 3;
 n = 2;
 
-% field = gftuple([-1:p^n-2]',n,p);
-% 
-% zero = -Inf;
-% rem = @(f,g) gfrem(f,g,field);
-
 fqx = FiniteFieldPoly(p,n);
 
 f = [1 2 4]; 
-fprintf("f(x) = "); fqx.gfshow(fqx,f);
+fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
 g = [2 2]; 
-fprintf("g(x) = "); fqx.gfshow(fqx,g);
+fprintf("g(x) = %s\n", fqx.gfshow(fqx,g));
 
-h = euclid(f,g,fqx); % 2
-fprintf("h(x) = "); fqx.gfshow(fqx,h);
+h = euclid(f,g,fqx); 
+fprintf("gcd(f(x),g(x)) = %s\n", fqx.gfshow(fqx,h));
 
-% gcd = a1*f + a2*g Identidad de Bezout
-%[gcd,a1,a2] = euclid_extended(z,w, zero, one, prod, minus, quo)
-
+[gcd,s,t] = euclid_extended(f,g,fqx);
+fprintf("%s = [%s]*[%s] + [%s]*[%s]\n ", fqx.gfshow(fqx,gcd), ...
+    fqx.gfshow(fqx,s), fqx.gfshow(fqx,f), ...
+    fqx.gfshow(fqx,t), fqx.gfshow(fqx,g));
 
