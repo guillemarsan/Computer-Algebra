@@ -1,4 +1,4 @@
-function x = chineseRem(n,a,zero, one, sum, minus, prod, quo, rem)
+function x = chinese_rem(n,a,zero, one, sum, minus, prod, quo, rem)
 %  ALGORITMO CHINO DE LOS RESTOS
 % 
 
