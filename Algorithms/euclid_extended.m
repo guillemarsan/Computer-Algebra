@@ -8,9 +8,9 @@ a2 = ed.zero;
 b1 = ed.zero;
 b2 = ed.one;
 
-while g ~= ed.zero
+while ~isequal(g,ed.zero)
     q = ed.quo(ed,f,g);
-    r = ed.minus(ed,f,ed.prod(ed,q,g));
+    r = ed.rem(ed,f,g);
     r1 = ed.minus(ed,a1,ed.prod(ed,q,b1));
     r2 = ed.minus(ed,a2,ed.prod(ed,q,b2));
     f = g; a1 = b1; a2 = b2;
