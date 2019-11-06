@@ -4,7 +4,7 @@ classdef FiniteFieldPoly
     end
     properties (Constant)
         zero = -Inf;
-        one = 1;
+        one = 0;
     end
     methods
         function obj = FiniteFieldPoly(p,n)
@@ -13,16 +13,16 @@ classdef FiniteFieldPoly
     end
     methods (Static)
         function r = add(obj,f,g) 
-            r = f+g; 
+            r = gfadd(f,g,obj.field);
         end
         function r = minus(obj,f,g) 
-            r = f-g; 
+            r = gfsub(f,g,obj.field); 
         end
         function r = prod(obj,f,g) 
-            r = z*w; 
+            r = gfconv(f,g,obj.field); 
         end
         function r = quo(obj,f,g) 
-            r = round(real(z/w)) + i*round(imag(z/w)); 
+            [r,~] = gfdeconv(f,g,obj.field); 
         end
         function r = rem(obj,f,g) 
             [~,r] = gfdeconv(f,g,obj.field);
@@ -34,7 +34,7 @@ classdef FiniteFieldPoly
                r = abs(real(z))+ i*abs(imag(z));
             end  
         end
-        function gfshow(obj,f)
+        function s = gfshow(obj,f)
         %   Muestra los polinomios pasados de forma exponencial a su equivalente en
         %   (Zp)^n
             n = size(obj.field,2);
@@ -83,7 +83,6 @@ classdef FiniteFieldPoly
                     end
                 end
             end
-            fprintf('%s\n',s);
         end
     end
 end

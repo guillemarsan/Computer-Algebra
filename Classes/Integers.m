@@ -17,7 +17,7 @@ classdef Integers
             r = fix(a/b); 
         end
         function r = rem(obj,a,b) 
-            r = mod(a,b); 
+            r = rem(a,b); 
         end
         function r = np(obj,a)
             r = abs(a);
