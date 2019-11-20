@@ -14,25 +14,35 @@ classdef FiniteFieldPoly
     methods (Static)
         function r = add(obj,f,g) 
             r = gfadd(f,g,obj.field);
+            r = obj.consolidate(r);
         end
         function r = minus(obj,f,g) 
             r = gfsub(f,g,obj.field); 
+            r = obj.consolidate(r);
         end
         function r = prod(obj,f,g) 
-            r = gfconv(f,g,obj.field); 
+            r = gfconv(f,g,obj.field);
+            r = obj.consolidate(r);
         end
         function r = quo(obj,f,g) 
             [r,~] = gfdeconv(f,g,obj.field); 
+            r = obj.consolidate(r);
         end
         function r = rem(obj,f,g) 
             [~,r] = gfdeconv(f,g,obj.field);
+            r = obj.consolidate(r);
         end
         function r = np(obj,f)
-            if real(z)==0
-               r = abs(imag(z));
-            else
-               r = abs(real(z))+ i*abs(imag(z));
-            end  
+            j = size(f,2);
+            a = f(j);
+            r = obj.quo(obj,f,a);
+        end
+        function r = consolidate(r)
+            j = size(r,2);
+            while j ~= 1 && r(j) == -Inf
+                r = r(1:j-1);
+                j = j - 1;
+            end
         end
         function s = gfshow(obj,f)
         %   Muestra los polinomios pasados de forma exponencial a su equivalente en

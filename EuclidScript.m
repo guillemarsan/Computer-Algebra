@@ -6,10 +6,10 @@
 
 path(path, 'Algorithms');
 path(path, 'Classes');
-
+clear
 %%  $$ Z $$
-a = -27
-b = 24
+a = 24
+b = -27
 
 Z = Integers;
 
@@ -48,7 +48,7 @@ n = 1;
 
 fqx = FiniteFieldPoly(p,n);
 
-f = [-Inf 0 1]; 
+f = [-Inf 1 1]; 
 fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
 g = [1 1]; 
 fprintf("g(x) = %s\n", fqx.gfshow(fqx,g));
@@ -57,10 +57,12 @@ h = euclid(f,g,fqx);
 fprintf("gcd(f(x),g(x)) = %s\n", fqx.gfshow(fqx,h));
 
 [gcd,s,t] = euclid_extended(f,g,fqx);
-fprintf("%s = (%s)*(%s) + (%s)*(%s)\n ", fqx.gfshow(fqx,gcd), ...
+fprintf("%s = (%s)*(%s) + (%s)*(%s)\n", fqx.gfshow(fqx,gcd), ...
     fqx.gfshow(fqx,s), fqx.gfshow(fqx,f), ...
     fqx.gfshow(fqx,t), fqx.gfshow(fqx,g));
 
+gcd = euclid_u(f,g,fqx);
+fprintf("gcdu(f(x),g(x)) = %s\n", fqx.gfshow(fqx,gcd));
 %% $$F_{q}[x] \quad q = 3^{2}$
 % 
 p = 3;
@@ -68,9 +70,9 @@ n = 2;
 
 fqx = FiniteFieldPoly(p,n);
 
-f = [1 2 4]; 
+f = [6 7 1]; 
 fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
-g = [2 2]; 
+g = [1 2 4]; 
 fprintf("g(x) = %s\n", fqx.gfshow(fqx,g));
 
 h = euclid(f,g,fqx); 
@@ -81,3 +83,5 @@ fprintf("%s = [%s]*[%s] + [%s]*[%s]\n ", fqx.gfshow(fqx,gcd), ...
     fqx.gfshow(fqx,s), fqx.gfshow(fqx,f), ...
     fqx.gfshow(fqx,t), fqx.gfshow(fqx,g));
 
+gcd = euclid_u(f,g,fqx);
+fprintf("gcdu(f(x),g(x)) = %s\n", fqx.gfshow(fqx,gcd));

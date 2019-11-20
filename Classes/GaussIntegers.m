@@ -14,18 +14,20 @@ classdef GaussIntegers
             r = z*w; 
         end
         function r = quo(obj,z,w) 
-            r = round(real(z/w)) + i*round(imag(z/w)); 
+            r = round(z/w); 
         end
         function r = rem(obj,z,w) 
             aux = z/w;
-            q = round(real(aux)) + i*round(imag(aux));
+            q = round(aux);
             r = z - q*w;
         end
         function r = np(obj,z)
-            if real(z)==0
-               r = abs(imag(z));
-            else
-               r = abs(real(z))+ i*abs(imag(z));
+            if real(z) <= 0 && imag(z) > 0
+               r = z*(-i);
+            elseif real(z) < 0 && imag(z) <= 0
+                r = z*(-1);
+            elseif real(z) >= 0 && imag(z) < 0 
+                r = z*i;
             end  
         end
     end
