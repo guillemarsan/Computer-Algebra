@@ -1,45 +1,40 @@
-%% Algoritmo de Euclides
+%% Algoritmo Chino de los Restos
 %
-% Algoritmo de Euclides Extendido: 
-% $gcd = s*f + t*g$ Identidad de Bezout
+% 
 %
 
 path(path, 'Algorithms');
 path(path, 'Classes');
 clear
 %%  $$ Z $$
-a = 24
-b = -27
+n = [9 10 11];
+a = [5 1 4];
+
+for j = 1:size(n,2)
+    fprintf("u = %i mod %i\n", a(j),n(j));
+end
 
 Z = Integers;
 
-gcd = euclid(a,b,Z); % -3
-fprintf("gcd(%i,%i) = %i\n",a,b,gcd);
+u = chinese_rem(n,a,Z);
+fprintf("\nu = %i\n", u);
 
-[gcd,s,t] = euclid_extended(a,b,Z);
-fprintf("%i = %i*%i + %i*%i\n",gcd,s,a,t,b);
-
-gcd = euclid_u(a,b,Z); % 3
-fprintf("gcdu(%i,%i) = %i\n",a,b,gcd);
 
 %% $$ Z(i) $$
 
-z = 18-i
-w = 11+7i
+n = [7+2i 7];
+a = [5+i 3];
+
+for j = 1:size(n,2)
+    fprintf("u = %i%+ii mod %i%+ii\n", real(a(j)), imag(a(j)), ...
+                    real(n(j)), imag(n(j)));
+end
 
 Zi = GaussIntegers;
 
-gcd = euclid(z,w,Zi); % -i
-fprintf("gcd(%i%+ii,%i%+ii) = %i%+ii\n",real(z),imag(z), real(w), ...
-    imag(w),real(gcd),imag(gcd));
+u = chinese_rem(n,a,Zi);
+fprintf("\nu = %i%+ii\n", real(u),imag(u));
 
-[gcd,s,t] = euclid_extended(z,w, Zi);
-fprintf("%i%+ii = (%i%+ii)*(%i%+ii) + (%i%+ii)*(%i%+ii)\n",real(gcd), ...
-    imag(gcd), real(s),imag(s),real(z),imag(z),real(t),imag(t),real(w),imag(w));
-
-gcd = euclid_u(z,w,Zi); % 1
-fprintf("gcdu(%i%+ii,%i%+ii) = %i%+ii\n",real(z),imag(z), real(w), ...
-    imag(w),real(gcd),imag(gcd));
 
 %% $$F_{q}[x] \quad q = 3^{1}$
 % 
@@ -57,7 +52,7 @@ h = euclid(f,g,fqx);
 fprintf("gcd(f(x),g(x)) = %s\n", fqx.gfshow(fqx,h));
 
 [gcd,s,t] = euclid_extended(f,g,fqx);
-fprintf("%s = (%s)*(%s) + (%s)*(%s)\n", fqx.gfshow(fqx,gcd), ...
+fprintf("%s = (%s)*(%s) + (%s)*(%s)\n ", fqx.gfshow(fqx,gcd), ...
     fqx.gfshow(fqx,s), fqx.gfshow(fqx,f), ...
     fqx.gfshow(fqx,t), fqx.gfshow(fqx,g));
 
