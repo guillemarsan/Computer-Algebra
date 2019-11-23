@@ -4,10 +4,11 @@
 
 path(path, 'Algorithms');
 path(path, 'Classes');
-
+clear
 %%  $$ Z[X] $$
-f = [-4 0 1];
-g = [2 1];
+f = [1 10 23 14];
+g = [1 0 -19 -30];
+
 
 Zx = IntegerPoly;
 

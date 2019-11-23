@@ -53,7 +53,7 @@ fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
 g = [1 1]; 
 fprintf("g(x) = %s\n", fqx.gfshow(fqx,g));
 
-h = euclid(f,g,fqx); 
+h = euclid(f,g,fqx); % 2 + 2x
 fprintf("gcd(f(x),g(x)) = %s\n", fqx.gfshow(fqx,h));
 
 [gcd,s,t] = euclid_extended(f,g,fqx);
@@ -75,7 +75,7 @@ fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
 g = [1 2 4]; 
 fprintf("g(x) = %s\n", fqx.gfshow(fqx,g));
 
-h = euclid(f,g,fqx); 
+h = euclid(f,g,fqx); % (0 + 1a) + (1 +2a)x + (2 +0a)x^2
 fprintf("gcd(f(x),g(x)) = %s\n", fqx.gfshow(fqx,h));
 
 [gcd,s,t] = euclid_extended(f,g,fqx);
@@ -83,5 +83,5 @@ fprintf("%s = [%s]*[%s] + [%s]*[%s]\n ", fqx.gfshow(fqx,gcd), ...
     fqx.gfshow(fqx,s), fqx.gfshow(fqx,f), ...
     fqx.gfshow(fqx,t), fqx.gfshow(fqx,g));
 
-gcd = euclid_u(f,g,fqx);
+gcd = euclid_u(f,g,fqx); 
 fprintf("gcdu(f(x),g(x)) = %s\n", fqx.gfshow(fqx,gcd));

@@ -3,28 +3,22 @@ function x = chinese_rem(n,a,ed)
 % 
 
 N = ed.one;
-k = size(n,2);
+k = size(n,1);
 for i = 1:k
-    N = ed.prod(ed,N,n(i));
+    N = ed.prod(ed,N,n{i});
 end
 
-e = zeros(1,k);
 for i = 1:k
-    q = ed.quo(ed,N,n(i));
-    b = ed.rem(ed,q,n(i));
-    [~,~,t] = euclid_extended(n(i),b,ed);
-    t = ed.np(ed,t);
-    if t < 0
-        t = ed.add(ed,t,n(i));
-    end
-    e(i) = ed.prod(ed,q,t);   
+    q{i} = ed.quo(ed,N,n{i});
+    [~,s,~] = euclid_extended_u(q{i},n{i},ed);
+    e{i}=ed.rem(ed,ed.prod(ed,s,a{i}),n{i});
+      
 end 
 
 aux = ed.zero;
 for i=1:k
-    aux = ed.add(ed,aux,ed.prod(ed,a(i),e(i)));
+    aux = ed.add(ed,aux,ed.prod(ed,e{i},q{i}));
 end
-
-x = ed.rem(ed,aux,N);
+x = aux;
 end
 

@@ -64,8 +64,10 @@ classdef IntegerPoly
            
         end
         function r = consolidate(r)
-            while (length(r) > 1 && r(1) == 0)
-                r = r(2:length(r));
+            j = length(r);
+            while j ~= 1 && r(j) == 0
+                a = a(2:j);
+                j = j - 1;
             end
         end
         function s = polyshow(obj,a)

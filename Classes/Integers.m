@@ -22,5 +22,12 @@ classdef Integers
         function r = np(obj,a)
             r = abs(a);
         end
+        function [r,s,t] = np_ext(obj,r,s,t)
+            if (r < 0)
+                r = -r;
+                s = -s;
+                t = -t;
+            end
+        end
     end
 end

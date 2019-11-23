@@ -21,13 +21,28 @@ classdef GaussIntegers
             q = round(aux);
             r = z - q*w;
         end
-        function r = np(obj,z)
+        function z = np(obj,z)
             if real(z) <= 0 && imag(z) > 0
-               r = z*(-i);
+               z = z*(-i);
             elseif real(z) < 0 && imag(z) <= 0
-                r = z*(-1);
+                z = z*(-1);
             elseif real(z) >= 0 && imag(z) < 0 
-                r = z*i;
+                z = z*i;
+            end  
+        end
+        function [z,s,t] = np_ext(obj,z,s,t)
+            if real(z) <= 0 && imag(z) > 0
+                z = z*(-i);
+                s = s*(-i);
+                t = t*(-i);
+            elseif real(z) < 0 && imag(z) <= 0
+                z = z*(-1);
+                s = s*(-1);
+                t = t*(-1);
+            elseif real(z) >= 0 && imag(z) < 0
+                z = z*i;
+                s = s*i;
+                t = t*i;
             end  
         end
     end
