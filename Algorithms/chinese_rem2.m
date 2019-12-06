@@ -12,7 +12,7 @@ for i = 1:k
     q = ed.quo(ed,N,n{i});
     b = ed.rem(ed,q,n{i});
     [~,~,t] = euclid_extended_u(n{i},b,ed);
-    if t < 0
+    if t < ed.zero
         t = ed.add(ed,t,n{i});
     end
     e{i} = ed.prod(ed,q,t);    

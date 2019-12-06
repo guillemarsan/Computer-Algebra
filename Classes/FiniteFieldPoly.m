@@ -51,6 +51,21 @@ classdef FiniteFieldPoly
                 j = j - 1;
             end
         end
+        function df = derivative(obj,f)
+            deg = length(f);
+            i = 2;
+            df = [];
+            alpha = obj.field(3);
+            while(i < deg)
+                aux = obj.zero;
+                for j = 1:i-1
+                    aux = obj.add(obj,aux,f(i));
+                end
+                df = [df aux];
+                i=i+1;
+            end
+            obj.consolidate(df);
+        end 
         function s = gfshow(obj,f)
         %   Muestra los polinomios pasados de forma exponencial a su equivalente en
         %   (Zp)^n

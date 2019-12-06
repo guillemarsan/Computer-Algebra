@@ -36,7 +36,7 @@ for j = 1:size(n,1)
                     real(n{j}), imag(n{j}));
 end
 
-u = chinese_rem(n,a,Zi);
+u = chinese_rem(n,a,Zi); %-25
 fprintf("\nu = %i%+ii\n", real(u),imag(u));
 
 u = chinese_rem2(n,a,Zi);
