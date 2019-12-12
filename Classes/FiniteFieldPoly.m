@@ -56,7 +56,7 @@ classdef FiniteFieldPoly
             i = 2;
             df = [];
             alpha = obj.field(3);
-            while(i < deg)
+            while(i < deg + 1)
                 aux = obj.zero;
                 for j = 1:i-1
                     aux = obj.add(obj,aux,f(i));
@@ -64,8 +64,19 @@ classdef FiniteFieldPoly
                 df = [df aux];
                 i=i+1;
             end
-            obj.consolidate(df);
-        end 
+            df = obj.consolidate(df);
+        end
+        function elem = gftrans(obj,n)
+            if n < 0
+                elem = obj.field(1,:);
+            else 
+                elem = obj.field(n+2,:);
+            end
+        end
+        function [p,n] = gfgetpn(obj)
+            [rs,n] = size(obj.field);
+            p = nthroot(rs,n);
+        end
         function s = gfshow(obj,f)
         %   Muestra los polinomios pasados de forma exponencial a su equivalente en
         %   (Zp)^n
@@ -73,11 +84,7 @@ classdef FiniteFieldPoly
             deg = length(f);
             if (n == 1) % Zp
                 for i = 1:deg
-                    if f(i) < 0
-                        elem = obj.field(1);
-                    else 
-                        elem = obj.field(f(i)+2);
-                    end
+                    elem = obj.gftrans(obj,f(i));
                     if(i == 1)
                         s = string(elem);
                     elseif (i == 2)
@@ -88,12 +95,7 @@ classdef FiniteFieldPoly
                 end
             else % (Zp)^n
                 for i = 1:deg
-                    if f(i) < 0
-                        elem = obj.field(1,:);
-                    else 
-                        elem = obj.field(f(i)+2,:);
-                    end
-
+                    elem = obj.gftrans(obj,f(i));
                     elemstr = "(";
                     for j=1:length(elem)
                        if (j == 1)
