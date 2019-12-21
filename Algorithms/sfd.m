@@ -24,13 +24,16 @@ while ~isequal(f,ff.one)
 end
 end
 
-function f = pthroot(f,ff,p)
-    deg = length(f);
+function g = pthroot(f,ff,p)
+    deg = length(f) - 1;
     [~,n] = ff.gfgetpn(ff);
-    for k = 1:deg
+    g = zeros(1,deg/p+1);
+    for k = 1:p:deg
+        acum = ff.one;
         for l = 1:p^(n-1)
-            f(k) = ff.prod(ff,f(k),f(k));
+            acum = ff.prod(ff,acum,f(k));
         end
+        g(floor(k/p)+1) = acum;
     end
 end
 
