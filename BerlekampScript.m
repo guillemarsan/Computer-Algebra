@@ -1,8 +1,5 @@
-%% Factorización de un polinomio en un cuerpo finito parte 1, parte 2, parte 3
+%% Factorización de Berlekamp
 %
-% SFD, DDF , EDF
-% SFD: Monic as input and factors are square-free (cannot de decomposed as
-% a square)
 %
 
 path(path, 'Algorithms');
@@ -10,16 +7,16 @@ path(path, 'Classes');
 clear
 %% $$F_{q}[x] \quad q = 3^{1}$ SDF
 % 
-p = 3;
+p = 11;
 n = 1;
 
 fqx = FiniteFieldPoly(p,n);
 
 
-f = [-Inf 1 1 -Inf 1 0 0 -Inf 0]; %f(x) = 0 + 2x + 1x^2 + 0x^3 + 0x^4 + 2x^5 + 0x^6 + 1x^7 + 1x^8
+f = [0 1 5 1 0 1 0]; %f(x) = 2x + x^3 + x^4 + 2x^5 + x^6
 fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
 
-L = sfd(f,fqx);
+berlekamp(f,fqx);
 
 fprintf("f(x) = ");
 len = length(L);
