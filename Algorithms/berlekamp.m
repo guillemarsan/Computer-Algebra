@@ -1,9 +1,7 @@
-function berlekamp(f,ff)
+function L = berlekamp(f,ff)
 %FACTORIZACION BERLEKAMP
 V = B1(f,ff);
 L = B2(f,V,ff);
-
-
 end
 
 function V = B1(f,ff)
@@ -43,7 +41,7 @@ while size(L) < r
        g = ff.add(ff,g,ff.prod(ff,c,V(i,:)));
    end
    L2 = {};
-   for i = 1:size(L)
+   for i = 1:size(L,2)
        h = L{i};
        beta = ff.rem(ff,g,h);
        repM1 = ff.np(ff,computeMk(ff,beta,1));
