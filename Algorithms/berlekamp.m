@@ -31,7 +31,7 @@ L = {f};
 r = size(V,1);
 [p,n] = ff.gfgetpn(ff);
 q = p^n;
-while size(L) < r
+while length(L) < r
    g = ff.zero;
    for i = 1:r
        c = randi([-1 q-2]);
@@ -41,7 +41,7 @@ while size(L) < r
        g = ff.add(ff,g,ff.prod(ff,c,V(i,:)));
    end
    L2 = {};
-   for i = 1:size(L,2)
+   for i = 1:length(L)
        h = L{i};
        beta = ff.rem(ff,g,h);
        repM1 = ff.np(ff,computeMk(ff,beta,1));
