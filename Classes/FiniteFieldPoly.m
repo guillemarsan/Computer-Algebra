@@ -73,6 +73,19 @@ classdef FiniteFieldPoly
                 elem = obj.field(n+2,:);
             end
         end
+        function elem = elemintoexp(obj,n)
+            if n == 0
+                elem = -Inf;
+            else
+                elem = find(obj.field == n) - 2;
+            end
+        end
+        function pol = polintoexp(obj,f)
+            pol = zeros(1,length(f));
+            for i=1:length(f)
+                pol(i) = obj.elemintoexp(obj,f(i));
+            end
+        end
         function [p,n] = gfgetpn(obj)
             [rs,n] = size(obj.field);
             p = nthroot(rs,n);
