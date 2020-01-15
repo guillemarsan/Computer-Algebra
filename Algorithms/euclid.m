@@ -1,4 +1,3 @@
-
 function gcd = euclid(f,g,ed)
 %EUCLIDS ALGORITHM Summary of this function goes here
 %   Detailed explanation goes here

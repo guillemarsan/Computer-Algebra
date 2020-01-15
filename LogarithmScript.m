@@ -16,7 +16,7 @@ f = [-Inf 0];
 Fqx = FiniteFieldPoly(p,n);
 
 base = [3];
-elem = [2];
+elem = [4];
 fprintf("base = %s\n", Fqx.gfshow(Fqx,base));
 fprintf("elem = %s\n", Fqx.gfshow(Fqx,elem));
 
