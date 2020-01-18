@@ -1,7 +1,7 @@
 function prime = aks(p,Z)
 % PRIMALITY TEST AKS
 
-len = floor(log10(p)) + 1;
+len = floor(log2(p)) + 1;
 
 % Step 1: if p = a^b for a,b in Z, return false. Dice en el libro que se
 % puede usar el algoritmo de perfect power testing del ej 3.31 (vamos a
@@ -59,22 +59,22 @@ end
 
 % Step 5: A final crazy condition
 for j=1:(2*len*floor(sqrt(r))+1)
-    Zpx = FiniteFieldPoly(p,1);
-    pol2 = ones(1,p+1) * Zpx.zero;
-    pol2(1) = Zpx.elemintoexp(Zpx,j);
-    pol2(p+1) = Zpx.one;
-    aux = [pol2(1) Zpx.one];
-    pol1 = Zpx.one;
+    aux = [Z.one j];
+    pol1 = Z.one;
     for i=1:p
-        pol1 = Zpx.prod(Zpx,pol1,aux);
+        pol1 = conv(pol1,aux);
+        pol1 = mod(pol1,p);
     end
-    modu = ones(1,r+1) * Zpx.zero;
-    modu(r+1) = Zpx.one;
-    modu = Zpx.minus(Zpx,modu,Zpx.one);
+    pol2 = ones(1,p+1) * Z.zero;
+    pol2(p+1) = j; 
+    pol2(1) = Z.one;
+    modu = ones(1,r+1) * Z.zero;
+    modu(1) = Z.one;
+    modu(r+1) = -Z.one;
     
-    pol1 = Zpx.rem(Zpx,pol1,modu);
-    pol2 = Zpx.rem(Zpx,pol2,modu);
-    if (isequal(pol1,pol2))
+    [~,pol1] = deconv(pol1,modu);
+    [~,pol2] = deconv(pol2,modu);
+    if (~isequal(pol1,pol2))
         prime = 0;
         return;
     end
