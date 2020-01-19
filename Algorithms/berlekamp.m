@@ -96,43 +96,6 @@ for ind = 1:l
 end  
 end
 
-
-
-
-
-
-
-% h = 1; 
-% k = 1; 
-% 
-% while h <= l && k <= l
-%     fi = find(Q(h:l,k) ~= ff.zero);
-%     if isempty(fi)
-%         k = k+1;
-%     else
-%         i_piv = fi(1)+h-1;
-%         M([h i_piv],:) = M([i_piv h],:);
-%         for i = (h+1):l
-%             f = ff.quo(ff,M(i,k),M(h,k));
-%             M(i, k) = ff.zero;
-%             for j = (k+1):2*l
-%                  M(i, j) = ff.minus(ff,M(i, j),ff.prod(ff,M(h, j),f));
-%             end
-%         end
-%         h = h + 1;
-%         k = k + 1;
-%     end
-% end
-
-% cont = 1;
-% for ind = 1:l
-%     if isequal(M(ind,1:l),ones(1,l)*ff.zero)
-%         V(cont,:) = M(ind,l+1:2*l);
-%         cont = cont + 1;
-%     end
-% end
-% end
-
 function Mk = computeMk(ff,alpha,k)
 [p,n] = ff.gfgetpn(ff);
 q = p^n;

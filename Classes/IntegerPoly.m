@@ -55,9 +55,9 @@ classdef IntegerPoly
                 end
             else
                 Z = Integers;
-                gcd = euclid(a(1),a(2),Z);
+                gcd = euclid_u(a(1),a(2),Z);
                 for i = 3:length(a)
-                    gcd = euclid(gcd,a(i),Z); 
+                    gcd = euclid_u(gcd,a(i),Z); 
                 end
                 r = a / gcd;
             end

@@ -6,17 +6,17 @@
 path(path, 'Algorithms');
 path(path, 'Classes');
 clear
-%% $$\frac{F_{q}[x]}{f(x)} \quad q = 5^{1} \quad f(x) = x$ SDF
+%% $$\frac{F_{q}[x]}{f(x)} \quad q = 3^{1} \quad f(x) = x$ 
 % 
 
-p = 5;
+p = 3;
 n = 1;
-f = [-Inf 0];
+f = [1 -Inf 0 0];
 
 Fqx = FiniteFieldPoly(p,n);
 
-base = [3];
-elem = [4];
+base = [0 0];
+elem = [0 -Inf -Inf 0];
 fprintf("base = %s\n", Fqx.gfshow(Fqx,base));
 fprintf("elem = %s\n", Fqx.gfshow(Fqx,elem));
 

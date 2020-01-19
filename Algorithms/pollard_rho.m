@@ -9,10 +9,6 @@ x = Fqx.rem(Fqx,Fqx.prod(Fqx,base,base),f);
 while (x ~= Fqx.one)
     x = Fqx.rem(Fqx,Fqx.prod(Fqx,x,base),f);
     N = N + 1;
-    
-    if (x == elem)
-        MAGICORESULTADO = N;
-    end
 end
 
 %Floyd's cycle finding algorithm
@@ -26,7 +22,7 @@ for i = 1:N
     [x,a,b] = func(x,a,b,base,elem,N,f,Fqx);
     [X,A,B] = func(X,A,B,base,elem,N,f,Fqx);
     [X,A,B] = func(X,A,B,base,elem,N,f,Fqx);
-    if (x == X)
+    if isequal(x,X)
         r = b-B;
         if (r == 0)
             log = nan;
