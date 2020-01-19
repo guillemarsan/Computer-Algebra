@@ -1,9 +1,7 @@
-function berlekamp(f,ff)
+function L = berlekamp(f,ff)
 %FACTORIZACION BERLEKAMP
 V = B1(f,ff);
 L = B2(f,V,ff);
-
-
 end
 
 function V = B1(f,ff)
@@ -33,7 +31,7 @@ L = {f};
 r = size(V,1);
 [p,n] = ff.gfgetpn(ff);
 q = p^n;
-while size(L) < r
+while length(L) < r
    g = ff.zero;
    for i = 1:r
        c = randi([-1 q-2]);
@@ -43,7 +41,7 @@ while size(L) < r
        g = ff.add(ff,g,ff.prod(ff,c,V(i,:)));
    end
    L2 = {};
-   for i = 1:size(L)
+   for i = 1:length(L)
        h = L{i};
        beta = ff.rem(ff,g,h);
        repM1 = ff.np(ff,computeMk(ff,beta,1));
@@ -97,43 +95,6 @@ for ind = 1:l
     end
 end  
 end
-
-
-
-
-
-
-
-% h = 1; 
-% k = 1; 
-% 
-% while h <= l && k <= l
-%     fi = find(Q(h:l,k) ~= ff.zero);
-%     if isempty(fi)
-%         k = k+1;
-%     else
-%         i_piv = fi(1)+h-1;
-%         M([h i_piv],:) = M([i_piv h],:);
-%         for i = (h+1):l
-%             f = ff.quo(ff,M(i,k),M(h,k));
-%             M(i, k) = ff.zero;
-%             for j = (k+1):2*l
-%                  M(i, j) = ff.minus(ff,M(i, j),ff.prod(ff,M(h, j),f));
-%             end
-%         end
-%         h = h + 1;
-%         k = k + 1;
-%     end
-% end
-
-% cont = 1;
-% for ind = 1:l
-%     if isequal(M(ind,1:l),ones(1,l)*ff.zero)
-%         V(cont,:) = M(ind,l+1:2*l);
-%         cont = cont + 1;
-%     end
-% end
-% end
 
 function Mk = computeMk(ff,alpha,k)
 [p,n] = ff.gfgetpn(ff);
