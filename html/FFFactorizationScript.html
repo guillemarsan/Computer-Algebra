@@ -1,0 +1,280 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>FFFactorizationScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-01-20"><meta name="DC.source" content="FFFactorizationScript.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Factorizaci&oacute;n de un polinomio en un cuerpo finito parte 1, parte 2, parte 3</a></li><li><a href="#2"><img src="FFFactorizationScript_eq11297058443001634107.png" alt="$$F_{q}[x] \quad q = 3^{1}$" style="width:85px;height:18px;"></a></li><li><a href="#3">SDF</a></li><li><a href="#4">DDF</a></li><li><a href="#5">EDF</a></li><li><a href="#6"><img src="FFFactorizationScript_eq04391923386395774840.png" alt="$$F_{q}[x] \quad q = 3^{2}$" style="width:85px;height:18px;"></a></li><li><a href="#7">SDF</a></li><li><a href="#8">DDF</a></li><li><a href="#9">EDF</a></li></ul></div><h2 id="1">Factorizaci&oacute;n de un polinomio en un cuerpo finito parte 1, parte 2, parte 3</h2><p>SFD: Factorizaci&oacute;n libre de cuadrados</p><p>DDF: Factorizaci&oacute;n en grados distintos</p><p>EDF: Factorizaci&oacute;n de mismo grado</p><pre class="codeinput">path(path, <span class="string">'Algorithms'</span>);
+path(path, <span class="string">'Classes'</span>);
+clear
+</pre><h2 id="2"><img src="FFFactorizationScript_eq11297058443001634107.png" alt="$$F_{q}[x] \quad q = 3^{1}$" style="width:85px;height:18px;"></h2><h2 id="3">SDF</h2><pre class="codeinput">p = 3;
+n = 1;
+
+fqx = FiniteFieldPoly(p,n);
+
+
+f = [-Inf 1 1 -Inf 1 0 0 -Inf 0]; <span class="comment">%f(x) = 0 + 2x + 1x^2 + 0x^3 + 0x^4 + 2x^5 + 0x^6 + 1x^7 + 1x^8</span>
+fprintf(<span class="string">"f(x) = %s\n"</span>, fqx.gfshow(fqx,f));
+
+L = sfd(f,fqx);
+
+fprintf(<span class="string">"f(x) = "</span>);
+len = length(L);
+<span class="keyword">for</span> i = 1:len
+    fprintf(<span class="string">"(%s)^%i"</span>, fqx.gfshow(fqx,L{i}{1}), L{i}{2});
+<span class="keyword">end</span>
+fprintf(<span class="string">"\n"</span>);
+</pre><pre class="codeoutput">f(x) = 0 + 2x + 2x^2 + 0x^3 + 2x^4 + 1x^5 + 1x^6 + 0x^7 + 1x^8
+f(x) = (0 + 2x + 0x^2 + 1x^3 + 1x^4 + 2x^5 + 1x^6)^1(2 + 1x)^2
+</pre><h2 id="4">DDF</h2><pre class="codeinput">f = [-Inf 1 -Inf 0 0 1 0]; <span class="comment">%f(x) = 2x + x^3 + x^4 + 2x^5 + x^6</span>
+fprintf(<span class="string">"f(x) = %s\n"</span>, fqx.gfshow(fqx,f));
+
+L = ddf(f,fqx);
+
+fprintf(<span class="string">"f(x) = "</span>);
+len = length(L);
+<span class="keyword">for</span> i = 1:len
+    fprintf(<span class="string">"(%s,%i)"</span>, fqx.gfshow(fqx,L{i}{1}), L{i}{2});
+<span class="keyword">end</span>
+fprintf(<span class="string">"\n"</span>);
+</pre><pre class="codeoutput">f(x) = 0 + 2x + 0x^2 + 1x^3 + 1x^4 + 2x^5 + 1x^6
+f(x) = (0 + 1x + 1x^2,1)(2 + 1x + 0x^2 + 1x^3 + 1x^4,2)
+</pre><h2 id="5">EDF</h2><pre class="codeinput">f = [-Inf 0 0]; <span class="comment">%x + x^2</span>
+k = 1;
+fprintf(<span class="string">"f(x) = %s   k = %i\n"</span>, fqx.gfshow(fqx,f), k);
+
+L = edf(f,k,fqx);
+
+fprintf(<span class="string">"f(x) = "</span>);
+len = length(L);
+<span class="keyword">for</span> i = 1:len
+    fprintf(<span class="string">"%s,"</span>, fqx.gfshow(fqx,L{i}));
+<span class="keyword">end</span>
+fprintf(<span class="string">"\n"</span>);
+</pre><pre class="codeoutput">f(x) = 0 + 1x + 1x^2   k = 1
+f(x) = 1 + 1x,0 + 1x,
+</pre><h2 id="6"><img src="FFFactorizationScript_eq04391923386395774840.png" alt="$$F_{q}[x] \quad q = 3^{2}$" style="width:85px;height:18px;"></h2><h2 id="7">SDF</h2><pre class="codeinput">p = 3;
+n = 2;
+
+fqx = FiniteFieldPoly(p,n);
+
+
+f = [7 7 5 3 0 -Inf 0]; <span class="comment">%f(x) = (1 + 1a) + (1 + 1a)x + (0 + 2a)x^2 +</span>
+                        <span class="comment">%(2 + 2a)x^3 + (1 + 0a)x^4 + (0 + 0a)x^5 + (1 + 0a)x^6</span>
+fprintf(<span class="string">"f(x) = %s\n"</span>, fqx.gfshow(fqx,f));
+
+L = sfd(f,fqx);
+
+fprintf(<span class="string">"f(x) = "</span>);
+len = length(L);
+<span class="keyword">for</span> i = 1:len
+    fprintf(<span class="string">"(%s)^%i"</span>, fqx.gfshow(fqx,L{i}{1}), L{i}{2});
+<span class="keyword">end</span>
+fprintf(<span class="string">"\n"</span>);
+</pre><pre class="codeoutput">f(x) = (1 + 1a) + (1 + 1a)x + (0 + 2a)x^2 + (2 + 2a)x^3 + (1 + 0a)x^4 + (0 + 0a)x^5 + (1 + 0a)x^6
+f(x) = ((1 + 1a) + (2 + 2a)x + (1 + 0a)x^2 + (1 + 0a)x^3 + (1 + 0a)x^4)^1((1 + 0a) + (1 + 0a)x)^2
+</pre><h2 id="8">DDF</h2><pre class="codeinput">f = [7 3 0 0 0]; <span class="comment">%f(x) = (1 + 1a) + (2 + 2a)x + (1 + 0a)x^2 + (1 + 0a)x^3 + (1 + 0a)x^4</span>
+fprintf(<span class="string">"f(x) = %s\n"</span>, fqx.gfshow(fqx,f));
+
+L = ddf(f,fqx);
+
+fprintf(<span class="string">"f(x) = "</span>);
+len = length(L);
+<span class="keyword">for</span> i = 1:len
+    fprintf(<span class="string">"(%s,%i)"</span>, fqx.gfshow(fqx,L{i}{1}), L{i}{2});
+<span class="keyword">end</span>
+fprintf(<span class="string">"\n"</span>);
+</pre><pre class="codeoutput">f(x) = (1 + 1a) + (2 + 2a)x + (1 + 0a)x^2 + (1 + 0a)x^3 + (1 + 0a)x^4
+f(x) = ((1 + 1a) + (1 + 2a)x + (1 + 0a)x^2,1)((1 + 0a) + (0 + 1a)x + (1 + 0a)x^2,2)
+</pre><h2 id="9">EDF</h2><pre class="codeinput">f = [7 2 0]; <span class="comment">% f(x) = (1 + 1a) + (1 + 2a)x + (1 + 0a)x^2</span>
+k = 1;
+fprintf(<span class="string">"f(x) = %s   k = %i\n"</span>, fqx.gfshow(fqx,f), k);
+
+L = edf(f,k,fqx);
+
+fprintf(<span class="string">"f(x) = "</span>);
+len = length(L);
+<span class="keyword">for</span> i = 1:len
+    fprintf(<span class="string">"%s,"</span>, fqx.gfshow(fqx,L{i}));
+<span class="keyword">end</span>
+fprintf(<span class="string">"\n"</span>);
+</pre><pre class="codeoutput">f(x) = (1 + 1a) + (1 + 2a)x + (1 + 0a)x^2   k = 1
+f(x) = (2 + 2a) + (1 + 0a)x,(2 + 0a) + (1 + 0a)x,
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Factorización de un polinomio en un cuerpo finito parte 1, parte 2, parte 3
+%
+% SFD: Factorización libre de cuadrados
+%
+% DDF: Factorización en grados distintos
+%
+% EDF: Factorización de mismo grado
+%
+
+path(path, 'Algorithms');
+path(path, 'Classes');
+clear
+%% $$F_{q}[x] \quad q = 3^{1}$ 
+%% SDF
+% 
+p = 3;
+n = 1;
+
+fqx = FiniteFieldPoly(p,n);
+
+
+f = [-Inf 1 1 -Inf 1 0 0 -Inf 0]; %f(x) = 0 + 2x + 1x^2 + 0x^3 + 0x^4 + 2x^5 + 0x^6 + 1x^7 + 1x^8
+fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
+
+L = sfd(f,fqx);
+
+fprintf("f(x) = ");
+len = length(L);
+for i = 1:len
+    fprintf("(%s)^%i", fqx.gfshow(fqx,L{i}{1}), L{i}{2});
+end
+fprintf("\n");
+
+%% DDF
+f = [-Inf 1 -Inf 0 0 1 0]; %f(x) = 2x + x^3 + x^4 + 2x^5 + x^6
+fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
+
+L = ddf(f,fqx);
+
+fprintf("f(x) = ");
+len = length(L);
+for i = 1:len
+    fprintf("(%s,%i)", fqx.gfshow(fqx,L{i}{1}), L{i}{2});
+end
+fprintf("\n");
+
+%% EDF
+
+f = [-Inf 0 0]; %x + x^2
+k = 1;
+fprintf("f(x) = %s   k = %i\n", fqx.gfshow(fqx,f), k);
+
+L = edf(f,k,fqx);
+
+fprintf("f(x) = ");
+len = length(L);
+for i = 1:len
+    fprintf("%s,", fqx.gfshow(fqx,L{i}));
+end
+fprintf("\n");
+
+%% $$F_{q}[x] \quad q = 3^{2}$ 
+%% SDF
+% 
+p = 3;
+n = 2;
+
+fqx = FiniteFieldPoly(p,n);
+
+
+f = [7 7 5 3 0 -Inf 0]; %f(x) = (1 + 1a) + (1 + 1a)x + (0 + 2a)x^2 + 
+                        %(2 + 2a)x^3 + (1 + 0a)x^4 + (0 + 0a)x^5 + (1 + 0a)x^6
+fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
+
+L = sfd(f,fqx);
+
+fprintf("f(x) = ");
+len = length(L);
+for i = 1:len
+    fprintf("(%s)^%i", fqx.gfshow(fqx,L{i}{1}), L{i}{2});
+end
+fprintf("\n");
+
+%% DDF
+
+f = [7 3 0 0 0]; %f(x) = (1 + 1a) + (2 + 2a)x + (1 + 0a)x^2 + (1 + 0a)x^3 + (1 + 0a)x^4
+fprintf("f(x) = %s\n", fqx.gfshow(fqx,f));
+
+L = ddf(f,fqx);
+
+fprintf("f(x) = ");
+len = length(L);
+for i = 1:len
+    fprintf("(%s,%i)", fqx.gfshow(fqx,L{i}{1}), L{i}{2});
+end
+fprintf("\n");
+
+%% EDF
+
+f = [7 2 0]; % f(x) = (1 + 1a) + (1 + 2a)x + (1 + 0a)x^2
+k = 1;
+fprintf("f(x) = %s   k = %i\n", fqx.gfshow(fqx,f), k);
+
+L = edf(f,k,fqx);
+
+fprintf("f(x) = ");
+len = length(L);
+for i = 1:len
+    fprintf("%s,", fqx.gfshow(fqx,L{i}));
+end
+fprintf("\n");
+
+##### SOURCE END #####
+--></body></html>

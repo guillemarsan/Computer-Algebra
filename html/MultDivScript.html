@@ -1,0 +1,194 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MultDivScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-01-20"><meta name="DC.source" content="MultDivScript.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Division de polinomios multivariables</a></li><li><a href="#2"><img src="MultDivScript_eq16213879794323667351.png" alt="$$F_{q}[x,y] \quad q = 3^{1}$" style="width:98px;height:18px;"></a></li><li><a href="#3"><img src="MultDivScript_eq14532549293005274805.png" alt="$$F_{q}[x,y] \quad q = 3^{2}$" style="width:99px;height:18px;"></a></li></ul></div><h2 id="1">Division de polinomios multivariables</h2><p>Dados <img src="MultDivScript_eq12143398911432449101.png" alt="$f,g_{1},...,g_{s} \in F_{q}[x_{1},x_{2},...,x_{n}]$" style="width:179px;height:15px;"> calculamos <img src="MultDivScript_eq04458332512223591983.png" alt="$q_{1},...,q{s},r$" style="width:65px;height:10px;"> tales que <img src="MultDivScript_eq10066285318418432696.png" alt="$f = q_{1}g_{1} + ... + q_{s}g_{s} + r$" style="width:150px;height:14px;"></p><p><img src="MultDivScript_eq14694175686580473991.png" alt="$F_{q}$" style="width:14px;height:14px;"> es cualquier cuerpo y se puede hacer usando el orden de monomios lexicogr&aacute;fico, lexicogr&aacute;fico de grado y lexicogr&aacute;fico de grado inverso</p><pre class="codeinput">path(path, <span class="string">'Algorithms'</span>);
+path(path, <span class="string">'Classes'</span>);
+clear
+</pre><h2 id="2"><img src="MultDivScript_eq16213879794323667351.png" alt="$$F_{q}[x,y] \quad q = 3^{1}$" style="width:98px;height:18px;"></h2><pre class="codeinput">p = 3;
+n = 1;
+f = {[0 0 0],[1 0 1],[1 1 0],[0 2 0],[1 1 2]}; <span class="comment">% f(x) = (1 + 2y^1 + 2x^1 + 1x^2 + 2x^1y^2)</span>
+g = {[1 0 0],[0 1 0],[1 1 1]}; <span class="comment">% g(x) = (2 + 1x^1 + 2x^1y^1)</span>
+h = {[1 0 0],[0 1 0]}; <span class="comment">% h(x) = (2 + 1x^1)</span>
+
+F = {g,h};
+
+Fqx = FiniteFieldPoly(p,n);
+MPFqx = FiniteFieldMultiPoly(Fqx,2);
+
+<span class="comment">% lex_order = @(x,y,z) MPFqx.lex_order(x,y,z);</span>
+lex_order = @(x,y,z) MPFqx.lex_gr_order(x,y,z);
+<span class="comment">% lex_order = @(x,y,z) MPFqx.lex_gr_r_order(x,y,z);</span>
+
+[Q,r] = mult_div(f,F,MPFqx,lex_order);
+
+fprintf(<span class="string">"(%s) = \n"</span>, MPFqx.gfshow(MPFqx,f));
+
+<span class="keyword">for</span> i = 1:length(F)
+    fprintf(<span class="string">"(%s)*(%s) +"</span>, MPFqx.gfshow(MPFqx,F{i}), MPFqx.gfshow(MPFqx,Q{i}));
+<span class="keyword">end</span>
+
+fprintf(<span class="string">"(%s)\n"</span>, MPFqx.gfshow(MPFqx,r));
+</pre><pre class="codeoutput">(1 + 2y^1 + 2x^1 + 1x^2 + 2x^1y^2) = 
+(2 + 1x^1 + 2x^1y^1)*(1y^1 + 1) +(2 + 1x^1)*(1x^1 + 2) +(1)
+</pre><h2 id="3"><img src="MultDivScript_eq14532549293005274805.png" alt="$$F_{q}[x,y] \quad q = 3^{2}$" style="width:99px;height:18px;"></h2><pre class="codeinput">p = 3;
+n = 2;
+f = {[1 0 1],[0 2 0],[1 1 2]}; <span class="comment">% f(x) = ((0 + 1a)y^1 + (1 + 0a)x^2 + (0 + 1a)x^1y^2)</span>
+g = {[1 0 0],[1 1 1]}; <span class="comment">% g(x) = ((0 + 1a) + (0 + 1a)x^1y^1)</span>
+h = {[1 0 0],[0 1 0]}; <span class="comment">% h(x) = ((0 + 1a) + (1 + 0a)x^1)</span>
+
+F = {g,h};
+
+Fqx = FiniteFieldPoly(p,n);
+MPFqx = FiniteFieldMultiPoly(Fqx,2);
+
+<span class="comment">% lex_order = @(x,y,z) MPFqx.lex_order(x,y,z);</span>
+<span class="comment">% lex_order = @(x,y,z) MPFqx.lex_gr_order(x,y,z);</span>
+lex_order = @(x,y,z) MPFqx.lex_gr_r_order(x,y,z);
+
+[Q,r] = mult_div(f,F,MPFqx,lex_order);
+
+fprintf(<span class="string">"(%s) = \n"</span>, MPFqx.gfshow(MPFqx,f));
+
+<span class="keyword">for</span> i = 1:length(F)
+    fprintf(<span class="string">"(%s)*(%s) +"</span>, MPFqx.gfshow(MPFqx,F{i}), MPFqx.gfshow(MPFqx,Q{i}));
+<span class="keyword">end</span>
+
+fprintf(<span class="string">"(%s)\n"</span>, MPFqx.gfshow(MPFqx,r));
+</pre><pre class="codeoutput">((0 + 1a)y^1 + (1 + 0a)x^2 + (0 + 1a)x^1y^2) = 
+((0 + 1a) + (0 + 1a)x^1y^1)*((1 + 0a)y^1) +((0 + 1a) + (1 + 0a)x^1)*((1 + 0a)x^1 + (0 + 2a)) +((1 + 2a))
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Division de polinomios multivariables
+%
+% Dados $f,g_{1},...,g_{s} \in F_{q}[x_{1},x_{2},...,x_{n}]$ calculamos
+% $q_{1},...,q{s},r$ tales que $f = q_{1}g_{1} + ... + q_{s}g_{s} + r$
+%
+% $F_{q}$ es cualquier cuerpo y se puede hacer usando el orden de monomios
+% lexicográfico, lexicográfico de grado y lexicográfico de grado inverso
+%
+
+path(path, 'Algorithms');
+path(path, 'Classes');
+clear
+%% $$F_{q}[x,y] \quad q = 3^{1}$
+% 
+
+p = 3;
+n = 1;
+f = {[0 0 0],[1 0 1],[1 1 0],[0 2 0],[1 1 2]}; % f(x) = (1 + 2y^1 + 2x^1 + 1x^2 + 2x^1y^2)
+g = {[1 0 0],[0 1 0],[1 1 1]}; % g(x) = (2 + 1x^1 + 2x^1y^1)
+h = {[1 0 0],[0 1 0]}; % h(x) = (2 + 1x^1)
+
+F = {g,h};
+
+Fqx = FiniteFieldPoly(p,n);
+MPFqx = FiniteFieldMultiPoly(Fqx,2);
+
+% lex_order = @(x,y,z) MPFqx.lex_order(x,y,z);
+lex_order = @(x,y,z) MPFqx.lex_gr_order(x,y,z);
+% lex_order = @(x,y,z) MPFqx.lex_gr_r_order(x,y,z);
+
+[Q,r] = mult_div(f,F,MPFqx,lex_order);
+
+fprintf("(%s) = \n", MPFqx.gfshow(MPFqx,f));
+
+for i = 1:length(F)
+    fprintf("(%s)*(%s) +", MPFqx.gfshow(MPFqx,F{i}), MPFqx.gfshow(MPFqx,Q{i}));
+end
+
+fprintf("(%s)\n", MPFqx.gfshow(MPFqx,r)); 
+
+%% $$F_{q}[x,y] \quad q = 3^{2}$ 
+% 
+
+p = 3;
+n = 2;
+f = {[1 0 1],[0 2 0],[1 1 2]}; % f(x) = ((0 + 1a)y^1 + (1 + 0a)x^2 + (0 + 1a)x^1y^2)
+g = {[1 0 0],[1 1 1]}; % g(x) = ((0 + 1a) + (0 + 1a)x^1y^1)
+h = {[1 0 0],[0 1 0]}; % h(x) = ((0 + 1a) + (1 + 0a)x^1)
+
+F = {g,h};
+
+Fqx = FiniteFieldPoly(p,n);
+MPFqx = FiniteFieldMultiPoly(Fqx,2);
+
+% lex_order = @(x,y,z) MPFqx.lex_order(x,y,z);
+% lex_order = @(x,y,z) MPFqx.lex_gr_order(x,y,z);
+lex_order = @(x,y,z) MPFqx.lex_gr_r_order(x,y,z);
+
+[Q,r] = mult_div(f,F,MPFqx,lex_order);
+
+fprintf("(%s) = \n", MPFqx.gfshow(MPFqx,f));
+
+for i = 1:length(F)
+    fprintf("(%s)*(%s) +", MPFqx.gfshow(MPFqx,F{i}), MPFqx.gfshow(MPFqx,Q{i}));
+end
+
+fprintf("(%s)\n", MPFqx.gfshow(MPFqx,r));
+##### SOURCE END #####
+--></body></html>

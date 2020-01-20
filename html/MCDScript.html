@@ -1,0 +1,161 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MCDScript</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-01-20"><meta name="DC.source" content="MCDScript.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">MCD en un DFU</a></li><li><a href="#2"><img src="MCDScript_eq01981630927850506259.png" alt="$$ Z[X] \: Ej1 $$" style="width:60px;height:15px;"></a></li><li><a href="#3"><img src="MCDScript_eq02868110611072062801.png" alt="$$ Z[X] \: Ej2 $$" style="width:61px;height:15px;"></a></li><li><a href="#4"><img src="MCDScript_eq00101119782756212778.png" alt="$$ Z[X] \: Ej3 \: Coprimos $$" style="width:129px;height:15px;"></a></li></ul></div><h2 id="1">MCD en un DFU</h2><p>C&aacute;lculo de <img src="MCDScript_eq02615494945101975260.png" alt="$mcd(a,b)$" style="width:58px;height:15px;"> con <img src="MCDScript_eq03999596065679738836.png" alt="$a,b\in R[x]$" style="width:65px;height:15px;"> y <img src="MCDScript_eq03442895190380135198.png" alt="$R$" style="width:11px;height:11px;"> un <img src="MCDScript_eq17418819554486131223.png" alt="$DFU$" style="width:36px;height:11px;"> cualquiera</p><pre class="codeinput">path(path, <span class="string">'Algorithms'</span>);
+path(path, <span class="string">'Classes'</span>);
+clear
+</pre><h2 id="2"><img src="MCDScript_eq01981630927850506259.png" alt="$$ Z[X] \: Ej1 $$" style="width:60px;height:15px;"></h2><pre class="codeinput">f = [1 10 23 14];
+g = [1 0 -19 -30];
+
+
+Zx = IntegerPoly;
+
+fprintf(<span class="string">"f(x) = %s\n"</span>,Zx.polyshow(Zx,f));
+fprintf(<span class="string">"g(x) = %s\n"</span>,Zx.polyshow(Zx,g));
+
+gcd = euclid_primitive(f,g,Zx); <span class="comment">% x+2</span>
+fprintf(<span class="string">"gcd(f(x),g(x)) = %s\n"</span>, Zx.polyshow(Zx,gcd));
+</pre><pre class="codeoutput">f(x) = 1x^3+10x^2+23x+14
+g(x) = 1x^3+0x^2-19x-30
+gcd(f(x),g(x)) = 1x+2
+</pre><h2 id="3"><img src="MCDScript_eq02868110611072062801.png" alt="$$ Z[X] \: Ej2 $$" style="width:61px;height:15px;"></h2><pre class="codeinput">f = [1 7 9 13];
+g = [-2 -10 10 10 52 0];
+
+Zx = IntegerPoly;
+
+fprintf(<span class="string">"f(x) = %s\n"</span>,Zx.polyshow(Zx,f));
+fprintf(<span class="string">"g(x) = %s\n"</span>,Zx.polyshow(Zx,g));
+
+gcd = euclid_primitive(f,g,Zx); <span class="comment">% 1x^3+7x^2+9x+13</span>
+fprintf(<span class="string">"gcd(f(x),g(x)) = %s\n"</span>, Zx.polyshow(Zx,gcd));
+</pre><pre class="codeoutput">f(x) = 1x^3+7x^2+9x+13
+g(x) = -2x^5-10x^4+10x^3+10x^2+52x+0
+gcd(f(x),g(x)) = 1x^3+7x^2+9x+13
+</pre><h2 id="4"><img src="MCDScript_eq00101119782756212778.png" alt="$$ Z[X] \: Ej3 \: Coprimos $$" style="width:129px;height:15px;"></h2><pre class="codeinput">f = [1 7 9 13];
+g = [2 3 5 -10 5];
+
+Zx = IntegerPoly;
+
+fprintf(<span class="string">"f(x) = %s\n"</span>,Zx.polyshow(Zx,f));
+fprintf(<span class="string">"g(x) = %s\n"</span>,Zx.polyshow(Zx,g));
+
+gcd = euclid_primitive(f,g,Zx); <span class="comment">% 1</span>
+fprintf(<span class="string">"gcd(f(x),g(x)) = %s\n"</span>, Zx.polyshow(Zx,gcd));
+</pre><pre class="codeoutput">f(x) = 1x^3+7x^2+9x+13
+g(x) = 2x^4+3x^3+5x^2-10x+5
+gcd(f(x),g(x)) = 1
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% MCD en un DFU
+% 
+% Cálculo de $mcd(a,b)$ con $a,b\in R[x]$ y $R$ un $DFU$ cualquiera
+% 
+
+path(path, 'Algorithms');
+path(path, 'Classes');
+clear
+%%  $$ Z[X] \: Ej1 $$
+f = [1 10 23 14];
+g = [1 0 -19 -30];
+
+
+Zx = IntegerPoly;
+
+fprintf("f(x) = %s\n",Zx.polyshow(Zx,f));
+fprintf("g(x) = %s\n",Zx.polyshow(Zx,g));
+
+gcd = euclid_primitive(f,g,Zx); % x+2
+fprintf("gcd(f(x),g(x)) = %s\n", Zx.polyshow(Zx,gcd));
+
+%% $$ Z[X] \: Ej2 $$
+
+f = [1 7 9 13];
+g = [-2 -10 10 10 52 0];
+
+Zx = IntegerPoly;
+
+fprintf("f(x) = %s\n",Zx.polyshow(Zx,f));
+fprintf("g(x) = %s\n",Zx.polyshow(Zx,g));
+
+gcd = euclid_primitive(f,g,Zx); % 1x^3+7x^2+9x+13
+fprintf("gcd(f(x),g(x)) = %s\n", Zx.polyshow(Zx,gcd));
+
+%% $$ Z[X] \: Ej3 \: Coprimos $$
+
+f = [1 7 9 13];
+g = [2 3 5 -10 5];
+
+Zx = IntegerPoly;
+
+fprintf("f(x) = %s\n",Zx.polyshow(Zx,f));
+fprintf("g(x) = %s\n",Zx.polyshow(Zx,g));
+
+gcd = euclid_primitive(f,g,Zx); % 1
+fprintf("gcd(f(x),g(x)) = %s\n", Zx.polyshow(Zx,gcd));
+##### SOURCE END #####
+--></body></html>
