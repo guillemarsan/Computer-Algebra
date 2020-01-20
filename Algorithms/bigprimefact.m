@@ -34,7 +34,7 @@ f2 = f;
 
 while 2*s <= length(T)
     cont = 0;
-    S = combntns(T,s);
+    S = combnk(T,s);
     
     for k = 1:size(S,1)
         comb = S(k,:);

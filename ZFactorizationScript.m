@@ -3,6 +3,7 @@
 
 path(path, 'Algorithms');
 path(path, 'Classes');
+warning('off','comm:gfprimdf:OutsideDatabase');
 clear
 %% $$Z[x]$ 
 % 
@@ -35,3 +36,5 @@ for i = 1:len
     fprintf("(%s)", Zx.polyshow(Zx,L{i})); % f(x) = (1x^2+0x+1)(1x+1)
 end
 fprintf("\n");
+
+warning('on','comm:gfprimdf:OutsideDatabase');
