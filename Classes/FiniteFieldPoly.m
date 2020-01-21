@@ -55,7 +55,6 @@ classdef FiniteFieldPoly
             deg = length(f);
             i = 2;
             df = [];
-            alpha = obj.field(3);
             while(i < deg + 1)
                 aux = obj.zero;
                 for j = 1:i-1

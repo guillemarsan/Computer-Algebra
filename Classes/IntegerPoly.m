@@ -36,6 +36,15 @@ classdef IntegerPoly
             [~,r] = deconv(a,b);
             r = obj.consolidate(r);
         end
+        function [q,r] = mon_quo(obj,a,b)
+            q = 0;
+            r = a;
+            while ~isequal(r,obj.zero) && (length(r) >= length(b))
+                t = obj.lc(obj,r);
+                q = obj.add(obj,q,t);
+                r = obj.minus(obj,r,obj.prod(obj,t,b));
+            end
+        end
         function r = lc(obj,a)
             r = a(1);
         end
