@@ -1,4 +1,6 @@
-%% Factorización en Z[X]
+%% Calculo de una base de Grobner con el Algoritmo de Buchberger
+%
+% Calculamos una base de Gröbner de un ideal $I = <f_{1},...,f_{s}>$
 %
 
 path(path, 'Algorithms');
@@ -9,17 +11,16 @@ clear
 
 p = 3;
 n = 1;
-f = {[0 0 0],[1 0 1],[1 1 0],[0 2 0],[1 1 2]}; % f(x) = (1 + 2y^1 + 2x^1 + 1x^2 + 2x^1y^2)
-g = {[1 0 0],[0 1 0],[1 1 1]}; % g(x) = (2 + 1x^1 + 2x^1y^1)
-h = {[1 0 0],[0 1 0]}; % h(x) = (2 + 1x^1)
+f = {[0 1 1],[0 3 0]}; % f(x) = (1x^1y^1 + 1x^3)
+g = {[0 1 0],[0 0 2],[0 2 1]}; % g(x) = (1x^1 + 1y^2 + 1x^2y^1)
 
-F = {f,g,h};
+F = {f,g};
 
 Fqx = FiniteFieldPoly(p,n);
 MPFqx = FiniteFieldMultiPoly(Fqx,2);
 
 % lex_order = @(x,y,z) MPFqx.lex_order(x,y,z);
-lex_order = @(x,y,z) MPFqx.lex_gr_order(x,y,z);
+ lex_order = @(x,y,z) MPFqx.lex_gr_order(x,y,z);
 % lex_order = @(x,y,z) MPFqx.lex_gr_r_order(x,y,z);
 
 G = buchberger(F,MPFqx,lex_order);
@@ -53,7 +54,7 @@ f = {[1 0 1],[0 2 0],[1 1 2]}; % f(x) = ((0 + 1a)y^1 + (1 + 0a)x^2 + (0 + 1a)x^1
 g = {[1 0 0],[1 1 1]}; % g(x) = ((0 + 1a) + (0 + 1a)x^1y^1)
 h = {[1 0 0],[0 1 0]}; % h(x) = ((0 + 1a) + (1 + 0a)x^1)
 
-F = {f,g,h};
+F = {g,h};
 
 Fqx = FiniteFieldPoly(p,n);
 MPFqx = FiniteFieldMultiPoly(Fqx,2);
