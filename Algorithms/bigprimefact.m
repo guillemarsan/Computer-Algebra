@@ -1,12 +1,13 @@
 function G = bigprimefact(f,Zx)
 % FACTORIZATION IN Z[x] (BIG PRIME VERSION)
 
+
 n = length(f) - 1;
-A = max(abs(f));
 if (n == 1)
     G = {f};
     return;
 end
+A = max(abs(f));
 b = Zx.lc(Zx,f);
 B = sqrt(n+1) * 2^n * A * b;
 
@@ -25,7 +26,6 @@ while ~isequal(gcd,0)
 end
 
 L = modFact(f,b,p);
-
 
 T = 1:length(L);
 s = 1;
