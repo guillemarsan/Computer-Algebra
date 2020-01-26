@@ -6,7 +6,7 @@ q = p^n;
 %Calculamos el orden de la base
 N = 2;
 x = Fqx.rem(Fqx,Fqx.prod(Fqx,base,base),f);
-while (x ~= Fqx.one)
+while ~isequal(x,Fqx.one)
     x = Fqx.rem(Fqx,Fqx.prod(Fqx,x,base),f);
     N = N + 1;
 end
@@ -28,9 +28,8 @@ for i = 1:N
             log = nan;
             return;
         end
-        ZNx = NIntegers(N);
-        r = ZNx.np(ZNx,r);
-        [gcd,rInv,~] = euclid_extended_u(r,N,ZNx);
+        Z = Integers;
+        [gcd,rInv,~] = euclid_extended_u(r,N,Z);
         if (gcd ~= 1)
             log = nan;
             return;
@@ -47,7 +46,7 @@ s = x(1);
 if (s == -Inf)
     s = -1;
 end
-s = mod(s+1,3);
+s = mod(s+2,3);
 % Hay que usar una función que divida el espacio en aproximadamente
 % tres partes iguales y que no lleve el 1 al case 0 (bucle infinito)
 switch (s)
