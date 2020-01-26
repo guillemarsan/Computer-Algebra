@@ -7,7 +7,7 @@
 
 path(path, 'Algorithms');
 path(path, 'Classes');
-warning('off','comm:gfprimdf:OutsideDatabase');
+warning('off','all');
 clear
 %% $$Z[x] \: Ej1$ 
 % 
@@ -61,4 +61,4 @@ end
 fprintf("\n");
 
 
-warning('on','comm:gfprimdf:OutsideDatabase');
+warning('on','all');
