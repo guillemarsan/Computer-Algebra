@@ -1,6 +1,10 @@
 %% Division de polinomios multivariables
 %
-% 
+% Dados $f,g_{1},...,g_{s} \in F_{q}[x_{1},x_{2},...,x_{n}]$ calculamos
+% $q_{1},...,q{s},r$ tales que $f = q_{1}g_{1} + ... + q_{s}g_{s} + r$
+%
+% $F_{q}$ es cualquier cuerpo y se puede hacer usando el orden de monomios
+% lexicográfico, lexicográfico de grado y lexicográfico de grado inverso
 %
 
 path(path, 'Algorithms');
@@ -34,7 +38,7 @@ end
 
 fprintf("(%s)\n", MPFqx.gfshow(MPFqx,r)); 
 
-%% $$\frac{F_{q}[x]}{f(x)} \quad q = 3^{2}$ 
+%% $$F_{q}[x,y] \quad q = 3^{2}$ 
 % 
 
 p = 3;

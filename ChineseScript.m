@@ -1,7 +1,9 @@
 %% Algoritmo Chino de los Restos
+% $U = A \, mod \, N$
 %
-% 
+% Algoritmo Chino de los Restos version 1
 %
+% Algoritmo Chino de los Restos version 2
 
 path(path, 'Algorithms');
 path(path, 'Classes');

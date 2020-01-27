@@ -1,7 +1,12 @@
 %% Algoritmo de Euclides
+% Algoritmo de Euclides 
 %
 % Algoritmo de Euclides Extendido: 
-% $gcd = s*f + t*g$ Identidad de Bezout
+% $gcd = s*f + t*g$ (Identidad de Bezout) 
+%
+% Algoritmo de Euclides único 
+%
+% Algoritmo de Euclides Extendido único 
 %
 
 path(path, 'Algorithms');
@@ -22,6 +27,9 @@ fprintf("%i = %i*%i + %i*%i\n",gcd,s,a,t,b);
 gcd = euclid_u(a,b,Z); % 3
 fprintf("gcdu(%i,%i) = %i\n",a,b,gcd);
 
+[gcd,s,t] = euclid_extended_u(a,b,Z);
+fprintf("%i = %i*%i + %i*%i\n",gcd,s,a,t,b);
+
 %% $$ Z(i) $$
 
 z = 18-i
@@ -40,6 +48,10 @@ fprintf("%i%+ii = (%i%+ii)*(%i%+ii) + (%i%+ii)*(%i%+ii)\n",real(gcd), ...
 gcd = euclid_u(z,w,Zi); % 1
 fprintf("gcdu(%i%+ii,%i%+ii) = %i%+ii\n",real(z),imag(z), real(w), ...
     imag(w),real(gcd),imag(gcd));
+
+[gcd,s,t] = euclid_extended_u(z,w, Zi);
+fprintf("%i%+ii = (%i%+ii)*(%i%+ii) + (%i%+ii)*(%i%+ii)\n",real(gcd), ...
+    imag(gcd), real(s),imag(s),real(z),imag(z),real(t),imag(t),real(w),imag(w));
 
 %% $$F_{q}[x] \quad q = 3^{1}$
 % 
@@ -63,6 +75,11 @@ fprintf("%s = (%s)*(%s) + (%s)*(%s)\n", fqx.gfshow(fqx,gcd), ...
 
 gcd = euclid_u(f,g,fqx);
 fprintf("gcdu(f(x),g(x)) = %s\n", fqx.gfshow(fqx,gcd));
+
+[gcd,s,t] = euclid_extended_u(f,g,fqx);
+fprintf("%s = (%s)*(%s) + (%s)*(%s)\n", fqx.gfshow(fqx,gcd), ...
+    fqx.gfshow(fqx,s), fqx.gfshow(fqx,f), ...
+    fqx.gfshow(fqx,t), fqx.gfshow(fqx,g));
 %% $$F_{q}[x] \quad q = 3^{2}$
 % 
 p = 3;
@@ -85,3 +102,8 @@ fprintf("%s = [%s]*[%s] + [%s]*[%s]\n ", fqx.gfshow(fqx,gcd), ...
 
 gcd = euclid_u(f,g,fqx); 
 fprintf("gcdu(f(x),g(x)) = %s\n", fqx.gfshow(fqx,gcd));
+
+[gcd,s,t] = euclid_extended_u(f,g,fqx);
+fprintf("%s = [%s]*[%s] + [%s]*[%s]\n ", fqx.gfshow(fqx,gcd), ...
+    fqx.gfshow(fqx,s), fqx.gfshow(fqx,f), ...
+    fqx.gfshow(fqx,t), fqx.gfshow(fqx,g));

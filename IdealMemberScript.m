@@ -1,5 +1,8 @@
 %% Algoritmo de pertenencia a un ideal
 %
+% Dado $f$ en $F_{q}[x,y]$ y un ideal $I = <f_{1},...,f_{s}>$ determinamos
+% si $f \in I$
+%
 
 path(path, 'Algorithms');
 path(path, 'Classes');
@@ -9,7 +12,7 @@ clear
 
 p = 3;
 n = 1;
-f = {[0 0 0],[1 0 1],[1 1 0],[0 2 0],[1 1 2]}; % f(x) = (1 + 2y^1 + 2x^1 + 1x^2 + 2x^1y^2)
+f = {[1 0 1],[1 1 0],[0 2 0],[1 1 2]}; % f(x) = (2y^1 + 2x^1 + 1x^2 + 2x^1y^2)
 g = {[1 0 0],[0 1 0],[1 1 1]}; % g(x) = (2 + 1x^1 + 2x^1y^1)
 h = {[1 0 0],[0 1 0]}; % h(x) = (2 + 1x^1)
 
@@ -22,9 +25,9 @@ MPFqx = FiniteFieldMultiPoly(Fqx,2);
 lex_order = @(x,y,z) MPFqx.lex_gr_order(x,y,z);
 % lex_order = @(x,y,z) MPFqx.lex_gr_r_order(x,y,z);
 
-in = ideal_member(f,I,MPfqx,lex_order);
+in = ideal_member(f,I,MPFqx,lex_order);
 
-fprintf("%s\n", gfshow(MPFqx,f));
+fprintf("f(x,y) = %s\n", MPFqx.gfshow(MPFqx,f));
 
 if ~in
     fprintf("no ");
@@ -59,9 +62,9 @@ MPFqx = FiniteFieldMultiPoly(Fqx,2);
 % lex_order = @(x,y,z) MPFqx.lex_gr_order(x,y,z);
 lex_order = @(x,y,z) MPFqx.lex_gr_r_order(x,y,z);
 
-in = ideal_member(f,I,MPfqx,lex_order);
+in = ideal_member(f,I,MPFqx,lex_order);
 
-fprintf("%s\n", gfshow(MPFqx,f));
+fprintf("f(x,y) = %s\n", MPFqx.gfshow(MPFqx,f));
 
 if ~in
     fprintf("no ");

@@ -1,5 +1,6 @@
 %% Factorización de Berlekamp
 %
+% Factorización de $f$ en $F_{q}[x]$
 %
 
 path(path, 'Algorithms');
