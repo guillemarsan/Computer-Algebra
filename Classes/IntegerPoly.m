@@ -48,7 +48,7 @@ classdef IntegerPoly
                     degr = length(r)-1;
                     if degr == n+(1-i)
                         q(i) = obj.lc(obj,r);
-                        pol = zeros(1,i+1);
+                        pol = zeros(1,i);
                         pol(1) = q(i);
                         r = obj.minus(obj,r,obj.prod(obj,pol,b));
                     else

@@ -18,7 +18,6 @@ while(isequal(r,0) || ~isequal(gcd,0))
     p = primes(2*gamma*log(gamma));
     idx = randi(length(p));
     p = p(idx);
-    
     r = mod(b,p);
    
     f2 = mod(f,p);
@@ -180,7 +179,7 @@ nh = mod(nh,m^2);
 b = Zx.minus(Zx,Zx.prod(Zx,s,ng),Zx.one);
 b = Zx.add(Zx,Zx.prod(Zx,t,nh),b);
 b = mod(b,m^2);
-[c,d] = Zx.mon_quo(Zx,Zx.prod(Zx,s,b),nh);
+ [c,d] = Zx.mon_quo(Zx,Zx.prod(Zx,s,b),nh);
 c = mod(c,m^2); d = mod(d,m^2);
 ns = Zx.minus(Zx,s,d);
 ns = mod(ns,m^2);

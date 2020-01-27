@@ -13,7 +13,8 @@ clear
 % 
 Zx = IntegerPoly;
 
-f = [1 0 -5 0 4]; % f(x) = 1x^4 + 0x^3 - 5x^2 + 0x + 4
+%f = [1 0 -5 0 4]; % f(x) = 1x^4 + 0x^3 - 5x^2 + 0x + 4
+f = [1 0 0 0 -1] 
 fprintf("f(x) = %s\n", Zx.polyshow(Zx,f));
 
 L = bigprimefact(f,Zx);
